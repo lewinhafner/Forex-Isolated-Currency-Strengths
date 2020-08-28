@@ -1,0 +1,76 @@
+//@version=1
+study("FX-Isolated-Currency-Strengths-Indicator [LewinHafner]")
+
+//               100
+// RSI = 100 - --------
+//              1 + RS
+// RS = Average Gain / Average Loss
+
+// EUR basket
+eurusd = security("EURUSD", period, rsi(close, 14))
+eurgbp = security("EURGBP", period, rsi(close, 14))
+euraud = security("EURAUD", period, rsi(close, 14))
+eurjpy = security("EURJPY", period, rsi(close, 14))
+eurcad = security("EURAUD", period, rsi(close, 14))
+eurchf = security("EURCHF", period, rsi(close, 14))
+
+// USD basket
+usdeur = security("USDEUR", period, rsi(close, 14))
+usdgbp = security("USDGBP", period, rsi(close, 14))
+usdaud = security("USDAUD", period, rsi(close, 14))
+usdjpy = security("USDJPY", period, rsi(close, 14))
+usdcad = security("USDAUD", period, rsi(close, 14))
+usdchf = security("USDCHF", period, rsi(close, 14))
+
+// GBP basket
+gbpeur = security("GBPEUR", period, rsi(close, 14))
+gbpusd = security("GBPUSD", period, rsi(close, 14))
+gbpaud = security("GBPAUD", period, rsi(close, 14))
+gbpjpy = security("GBPJPY", period, rsi(close, 14))
+gbpcad = security("GBPCAD", period, rsi(close, 14))
+gbpchf = security("GBPCHF", period, rsi(close, 14))
+
+// AUD basket
+audeur = security("AUDEUR", period, rsi(close, 14))
+audusd = security("AUDUSD", period, rsi(close, 14))
+audgbp = security("AUDGBP", period, rsi(close, 14))
+audjpy = security("AUDJPY", period, rsi(close, 14))
+audcad = security("AUDCAD", period, rsi(close, 14))
+audchf = security("AUDCHF", period, rsi(close, 14))
+
+// JPY basket
+jpyeur = security("JPYEUR", period, rsi(close, 14))
+jpyusd = security("JPYUSD", period, rsi(close, 14))
+jpyaud = security("JPYAUD", period, rsi(close, 14))
+jpygbp = security("JPYGBP", period, rsi(close, 14))
+jpycad = security("JPYCAD", period, rsi(close, 14))
+jpychf = security("JPYCHF", period, rsi(close, 14))
+
+// CAD basket
+cadeur = security("CADEUR", period, rsi(close, 14))
+cadusd = security("CADUSD", period, rsi(close, 14))
+cadaud = security("CADAUD", period, rsi(close, 14))
+cadgbp = security("CADGBP", period, rsi(close, 14))
+cadjpy = security("CADJPY", period, rsi(close, 14))
+cadchf = security("CADCHF", period, rsi(close, 14))
+
+// CHF basket
+chfeur = security("CHFEUR", period, rsi(close, 14))
+chfusd = security("CHFUSD", period, rsi(close, 14))
+chfaud = security("CHFAUD", period, rsi(close, 14))
+chfgbp = security("CHFGBP", period, rsi(close, 14))
+chfjpy = security("CHFJPY", period, rsi(close, 14))
+chfcad = security("CHFCAD", period, rsi(close, 14))
+
+// Plot averaged baskets
+plot(avg(eurusd, eurgbp, euraud, eurjpy, eurcad, eurchf), "EUR", orange)
+plot(avg(usdaud, usdgbp, usdeur, usdjpy, usdcad, usdchf), "USD", green)
+plot(avg(gbpusd, gbpeur, gbpaud, gbpjpy, gbpcad, gbpchf), "GBP", blue)
+plot(avg(audusd, audgbp, audeur, audjpy, audcad, audchf), "AUD", purple)
+plot(avg(chfusd, chfgbp, chfaud, chfjpy, chfcad, chfeur), "CHF", black)
+plot(avg(jpyusd, jpygbp, jpyaud, jpychf, jpycad, jpyeur), "JPY", yellow)
+plot(avg(cadusd, cadgbp, cadaud, cadchf, cadjpy, cadeur), "CAD", red)
+
+// Statistically significant values
+hline(70)
+hline(30)
